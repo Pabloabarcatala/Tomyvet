@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Buscador de Mascotas</h2>
+<form method="POST" action="{{ url_for('search_pets') }}">
+    <div class="form-group">
+        <label for="search_term">Buscar</label>
+        <input type="text" class="form-control" id="search_term" name="search_term">
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Dueño</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Tipo</th>
+            <th>Raza</th>
+            <th>Edad</th>
+            <th>Imagen</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for animal in animals %}
+        <tr>
+            <td>{{ animal.name }}</td>
+            <td>{{ animal.owner_name }}</td>
+            <td>{{ animal.owner_address }}</td>
+            <td>{{ animal.owner_phone }}</td>
+            <td>{{ animal.animal_type }}</td>
+            <td>{{ animal.breed }}</td>
+            <td>{{ animal.age }}</td>
+            <td>
+                {% if animal.image %}
+                <img src="{{ url_for('static', filename='uploads/' ~ animal.image) }}" width="100">
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

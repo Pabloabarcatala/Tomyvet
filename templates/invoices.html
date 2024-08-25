@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Facturas</h2>
+    <a href="{{ url_for('add_invoice') }}" class="btn btn-primary mb-3">Agregar Factura</a>
+    <ul class="list-group">
+        {% for invoice in invoices %}
+        <li class="list-group-item">
+            {{ invoice[1] }} - {{ invoice[2] }} unidades - ${{ invoice[3] }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

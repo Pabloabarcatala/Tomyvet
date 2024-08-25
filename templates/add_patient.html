@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Agregar Paciente{% endblock %}
+
+{% block content %}
+<h1>Agregar Paciente</h1>
+<form method="post">
+    <label for="name">Nombre del Paciente:</label>
+    <input type="text" name="name" id="name" required>
+    <label for="owner_name">Nombre del Dueño:</label>
+    <input type="text" name="owner_name" id="owner_name" required>
+    <label for="owner_address">Dirección del Dueño:</label>
+    <input type="text" name="owner_address" id="owner_address" required>
+    <label for="owner_phone">Teléfono del Dueño:</label>
+    <input type="text" name="owner_phone" id="owner_phone" required>
+    <label for="animal_type">Tipo de Animal:</label>
+    <input type="text" name="animal_type" id="animal_type" required>
+    <label for="breed">Raza:</label>
+    <input type="text" name="breed" id="breed" required>
+    <label for="age">Edad:</label>
+    <input type="text" name="age" id="age" required>
+    <label for="medical_history">Historial Médico:</label>
+    <input type="text" name="medical_history" id="medical_history">
+    <button type="submit">Agregar Paciente</button>
+</form>
+{% endblock %}
+
+import sqlite3
+
+def add_image_column():
+    conn = sqlite3.connect('tomyvet.db')
+    cursor = conn.cursor()
+    cursor.execute('ALTER TABLE Patients ADD COLUMN image TEXT')
+    conn.commit()
+    conn.close()
+
+add_image_column()

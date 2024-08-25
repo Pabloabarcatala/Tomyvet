@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Gestionar Animales</h2>
+<a class="btn btn-primary" href="{{ url_for('add_animal') }}">Agregar Animal</a>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Propietario</th>
+            <th>Teléfono</th>
+            <th>Tipo</th>
+            <th>Raza</th>
+            <th>Edad</th>
+            <th>Historial Médico</th>
+            <th>Imagen</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for animal in animals %}
+        <tr>
+            <td>{{ animal.name }}</td>
+            <td>{{ animal.owner_name }}</td>
+            <td>{{ animal.owner_phone }}</td>
+            <td>{{ animal.animal_type }}</td>
+            <td>{{ animal.breed }}</td>
+            <td>{{ animal.age }}</td>
+            <td>{{ animal.medical_history }}</td>
+            <td>
+                <img src="{{ url_for('static', filename='uploads/' ~ animal.image_path) }}" alt="Imagen de {{ animal.name }}" width="100">
+            </td>
+            <td>
+                <form method="POST" action="{{ url_for('delete_animal', id=animal.id) }}" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este animal?');">
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

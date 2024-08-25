@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Agregar Animal</h2>
+<form method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="name">Nombre del Animal</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+        <label for="owner_name">Nombre del Propietario</label>
+        <input type="text" class="form-control" id="owner_name" name="owner_name" required>
+    </div>
+    <div class="form-group">
+        <label for="owner_address">Dirección del Propietario</label>
+        <input type="text" class="form-control" id="owner_address" name="owner_address" required>
+    </div>
+    <div class="form-group">
+        <label for="owner_phone">Teléfono del Propietario</label>
+        <input type="text" class="form-control" id="owner_phone" name="owner_phone" required>
+    </div>
+    <div class="form-group">
+        <label for="animal_type">Tipo de Animal</label>
+        <input type="text" class="form-control" id="animal_type" name="animal_type">
+    </div>
+    <div class="form-group">
+        <label for="breed">Raza</label>
+        <input type="text" class="form-control" id="breed" name="breed">
+    </div>
+    <div class="form-group">
+        <label for="age">Edad</label>
+        <input type="number" class="form-control" id="age" name="age">
+    </div>
+    <div class="form-group">
+        <label for="medical_history">Historial Médico</label>
+        <textarea class="form-control" id="medical_history" name="medical_history"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="species">Especie</label>
+        <input type="text" class="form-control" id="species" name="species">
+    </div>
+    <div class="form-group">
+        <label for="country">País</label>
+        <input type="text" class="form-control" id="country" name="country">
+    </div>
+    <div class="form-group">
+        <label for="region">Región</label>
+        <input type="text" class="form-control" id="region" name="region">
+    </div>
+    <div class="form-group">
+        <label for="comuna">Comuna</label>
+        <input type="text" class="form-control" id="comuna" name="comuna">
+    </div>
+    <div class="form-group">
+        <label for="image">Imagen del Animal</label>
+        <input type="file" class="form-control-file" id="image" name="image">
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar Animal</button>
+</form>
+{% endblock %}

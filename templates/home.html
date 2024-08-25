@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - TomyVet{% endblock %}
+
+{% block content %}
+<section class="banner">
+    <img src="{{ url_for('static', filename='image.png') }}" alt="Banner">
+</section>
+
+<h1>Bienvenido a TomyVet</h1>
+<p>La creación de una aplicación de adopción de animales es un proyecto altamente significativo y beneficioso. Enfrenta el desafío del abandono animal al proporcionar una plataforma centralizada que conecta a personas interesadas en adoptar mascotas con animales necesitados de hogar. Esta iniciativa no solo reduce el número de animales abandonados en refugios y calles, sino que también promueve el bienestar animal al asegurar que las mascotas encuentren hogares amorosos y adecuados. La aplicación simplifica y agiliza el proceso de adopción, facilitando la toma de decisiones informadas para garantizar la compatibilidad entre los adoptantes y los animales, mientras fomenta una conciencia social positiva y aprovecha los avances tecnológicos para abordar una problemática social importante.</p>
+
+{% if current_user.is_authenticated %}
+<form method="POST" action="{{ url_for('home') }}" class="story-form">
+    <input type="text" name="title" placeholder="Título de la Historia" required>
+    <textarea name="content" placeholder="Escribe tu historia aquí..." required></textarea>
+    <button type="submit">Publicar Historia</button>
+</form>
+{% else %}
+<p>Por favor, <a href="{{ url_for('login') }}">inicia sesión</a> para publicar una historia.</p>
+{% endif %}
+
+<h2>Historias</h2>
+<div class="stories">
+    {% for story in stories %}
+    <div class="story">
+        <h3>{{ story.title }}</h3>
+        <p>{{ story.content }}</p>
+        <p><small>Publicado por {{ story.author }} el {{ story.date_posted }}</small></p>
+        {% if current_user.is_authenticated and current_user.username == story.author %}
+        <form method="POST" action="{{ url_for('delete_story', story_id=story.id) }}">
+            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que quieres eliminar esta historia?');">Eliminar</button>
+        </form>
+        {% endif %}
+    </div>
+    <hr>
+    {% endfor %}
+</div>
+{% endblock %}

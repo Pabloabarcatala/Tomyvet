@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Agregar Medicamento</h2>
+<form method="POST">
+    <div class="form-group">
+        <label for="medicine_name">Nombre del Medicamento</label>
+        <input type="text" class="form-control" id="medicine_name" name="medicine_name" required>
+    </div>
+    <div class="form-group">
+        <label for="quantity">Cantidad</label>
+        <input type="number" class="form-control" id="quantity" name="quantity" required>
+    </div>
+    <div class="form-group">
+        <label for="price">Precio</label>
+        <input type="text" class="form-control" id="price" name="price" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar</button>
+</form>
+{% endblock %}
